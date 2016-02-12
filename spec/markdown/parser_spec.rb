@@ -35,5 +35,18 @@ describe Markdown::Parser do
       parsed = parse_as_file("hello *world_")
       expect(parsed).to eq("hello *world_")
     end
+
+    it "parses bold with double asteriks or double underscores" do
+      asterisks_content = "Hello **world**"
+      underscores_content = "Hello __world__"
+
+      parsed = parse_as_file(asterisks_content)
+      result = "Hello <strong>world</strong>"
+
+      expect(parsed).to eq(result)
+
+      parsed = parse_as_file(underscores_content)
+      expect(parsed).to eq(result)
+    end
   end
 end
